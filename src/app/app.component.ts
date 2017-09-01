@@ -1,15 +1,26 @@
-import { Component } from '@angular/core';
+import { ContentComponent } from './content.component';
+import { DialogService } from './dialog.module';
+import {
+  ViewRef,
+  Component, ComponentFactory,
+  OnInit, ComponentFactoryResolver,
+  Injector, ViewChild,
+  ViewContainerRef, Type
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   template: `
-    <h1>
-      Welcome to {{title}}!!
-    </h1>
-    <router-outlet></router-outlet>
+    <button (click)="create()">Create</button>
   `,
   styles: []
 })
 export class AppComponent {
-  title = 'app';
+
+  constructor(private dialog: DialogService) { }
+
+  create() {
+    this.dialog.open(ContentComponent);
+  }
+
 }
